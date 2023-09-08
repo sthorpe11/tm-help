@@ -3,9 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "50f6428c5144aaa6df80686e39077ec7",
-"assets/AssetManifest.json": "f8a046ab9fea84620390bab4b35866c3",
-"assets/AssetManifest.smcbin": "5dd2d9251cbc666e42eadc9dd16a92a6",
+const RESOURCES = {"assets/AssetManifest.bin": "4a5e03e92e79ed102d952a8177985127",
+"assets/AssetManifest.json": "614ed09e94dc0b14fbd39bdc697141cd",
 "assets/assets/attorneyinjungle_smallest.jpg": "2c2f13578ed6021085f4d63d6b3ab774",
 "assets/assets/Description_Search.PNG": "da68698bf2db49648acb44f04a06e76e",
 "assets/assets/Logo.png": "3c009af0b5cedfb3f05e71ecfad1ef1f",
@@ -19,6 +18,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "50f6428c5144aaa6df80686e39077ec7
 "assets/assets/TEAS_filing_basis_done.PNG": "00fb8d2a0391236e54da97ce361f1f4c",
 "assets/assets/TEAS_filing_options.PNG": "b3e7ce4536537965b0ed35a6ebc12e89",
 "assets/assets/TEAS_insert_entries.PNG": "ca4718403d40adf19b9181581777bb9c",
+"assets/assets/TEAS_mark_information.PNG": "04c419ebf01af5e99038ea4389bc011a",
 "assets/assets/TEAS_search_manual.PNG": "190ceb27610ea00d06bc91929358a11f",
 "assets/assets/TEAS_start_application.PNG": "3ff99aac04db687ee8735ef93507b095",
 "assets/assets/TESS.PNG": "bb985553da95fe188af7be9c3b29b2db",
@@ -30,7 +30,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "50f6428c5144aaa6df80686e39077ec7
 "assets/assets/trademark_ID_manual.PNG": "273a3b4322fe4c90726eb1fd0b345052",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "176048e01878186745ac87a0e9b29631",
-"assets/NOTICES": "b1f8b6e336523117d5e9c5404b74ada5",
+"assets/NOTICES": "184cd17964878b75373bef1ccf95ddc5",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "89ed8f4e49bcdfc0b5bfc9b24591e347",
 "assets/shaders/ink_sparkle.frag": "f8b80e740d33eb157090be4e995febdf",
 "canvaskit/canvaskit.js": "5caccb235fad20e9b72ea6da5a0094e6",
@@ -46,9 +46,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "50f6428c5144aaa6df80686e39077ec7
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "dce42794f1e7bf67e639874bffa4c6a7",
-"/": "dce42794f1e7bf67e639874bffa4c6a7",
-"main.dart.js": "2da74d4fbfb30ba4f21a98ff53ffc2bb",
+"index.html": "0f1a270792ac3e99f78fa47d621d8176",
+"/": "0f1a270792ac3e99f78fa47d621d8176",
+"main.dart.js": "7b81faeeda9f0a615080ee95405db7a9",
 "manifest.json": "5e573e78dc80e97bb57cfe5077a04c65",
 "version.json": "a948902960699333665ec7e87c30d98d"};
 // The application shell files that are downloaded before a service worker can
