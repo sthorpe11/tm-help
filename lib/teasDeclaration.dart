@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:trademark/searchTrademark.dart';
 import './homePage.dart';
-import './registrationRefusals.dart';
 import './registerTrademark.dart';
 import './finalVariables.dart';
 
-class aboutMe extends HookConsumerWidget {
+class teasDeclaration extends HookConsumerWidget {
   @override
 
   Widget build(BuildContext context, WidgetRef ref) {
-
+    final _inputControllerEmail = useTextEditingController(text: '');
+    final _inputControllerApplicationNo = useTextEditingController(text: '');
+    final _inputControllerName = useTextEditingController(text: '');
     return MaterialApp(home: Scaffold(
         appBar: AppBar(
-          title: Text("About Me"),
+          title: Text("Register Your Trademark"),
           titleTextStyle: TextStyle(color: headerTextColor, fontSize: headerTextSize),
           leading: Image.asset(headerIcon),
           backgroundColor: headerColor,
@@ -23,8 +25,8 @@ class aboutMe extends HookConsumerWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return PopupWindow(
-                    title: 'Lots of Experience',
-                    message: 'I have been doing trademarks for a long time.',
+                    title: 'Register Yourself',
+                    message: 'You can register your trademark yourself',
                   );
                 },
               );
@@ -33,8 +35,9 @@ class aboutMe extends HookConsumerWidget {
             ),
           ],
         ),
-        body: ListView(
-            children: <Widget>[
+        body: SingleChildScrollView(
+            child: Column(
+                children: <Widget>[
                   SizedBox(height: verticalSpace),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -53,35 +56,14 @@ class aboutMe extends HookConsumerWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => homePage()));
                               }
-
                           ),
                         ),
-
                         SizedBox(width: horizontalSpace),
                         SizedBox(
                           width: buttonWidth,
                           height: buttonHeight,
                           child: ElevatedButton(
-                              child: Text(rejectionButtonLabel),
-                              style:ElevatedButton.styleFrom(
-                                backgroundColor: buttonColor,
-                                foregroundColor: buttonTextColor,
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => registrationRefusals()));
-                              }
-
-                          ),
-                        ),
-
-
-                        SizedBox(width: horizontalSpace),
-                        SizedBox(
-                          width: buttonWidth,
-                          height: buttonHeight,
-                          child: ElevatedButton(
-                              child: Text(registerButtonLabel),
+                              child: Text('ID'),
                               style:ElevatedButton.styleFrom(
                                 backgroundColor: buttonColor,
                                 foregroundColor: buttonTextColor,
@@ -93,55 +75,75 @@ class aboutMe extends HookConsumerWidget {
 
                           ),
                         ),
-
                         SizedBox(width: horizontalSpace),
                         SizedBox(
                           width: buttonWidth,
                           height: buttonHeight,
                           child: ElevatedButton(
-                              child: Text(aboutButtonLabel),
+                              child: Text('Search'),
                               style:ElevatedButton.styleFrom(
                                 backgroundColor: buttonColor,
                                 foregroundColor: buttonTextColor,
                               ),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => aboutMe()));
+                                    builder: (context) => searchTrademark()));
                               }
+
                           ),
+                        ),
+                      ]),
+                  Column(
+                      children: <Widget>[
+
+                        SizedBox(height: verticalSpace),
+                        DisplayText('Complete and sign the Declaration:'),
+                        SizedBox(height: verticalSpace),
+                        SizedBox(
+                            width: displayBoxWidth,
+                            child: Image.asset('assets/TEAS_declaration.PNG')
+                        ),
+                        SizedBox(height: verticalSpace),
+                        DisplayText('Select Validate'),
+                        SizedBox(height: verticalSpace),
+                        SizedBox(
+                            width: displayBoxWidth,
+                            child: Image.asset('assets/TEAS_validate.PNG')
+                        ),
+                        SizedBox(height: verticalSpace),
+                        DisplayText('Check your application by selecting Input'),
+                        SizedBox(height: verticalSpace),
+                        SizedBox(
+                            width: displayBoxWidth,
+                            child: Image.asset('assets/TEAS_input.PNG')
+                        ),
+                        SizedBox(height: verticalSpace),
+                        DisplayText('If everything is okay, check the box and submit'
+                            'and pay'),
+                        SizedBox(height: verticalSpace),
+                        SizedBox(
+                            width: displayBoxWidth,
+                            child: Image.asset('assets/TEAS_pay_submit.PNG')
                         ),
 
                       ]),
                   SizedBox(height: verticalSpace),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: horizontalSpace,),
-                        SizedBox(
-                          width: 50,
-                          //height: reviewBoxHeight,
-                          child: Text(''),
+                  SizedBox(
+                    width: buttonWidth,
+                    height: buttonHeight,
+                    child: ElevatedButton(
+                        child: Text('Done'),
+                        style:ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          foregroundColor: buttonTextColor,
                         ),
-                        SizedBox(width: horizontalSpace,),
-                        SizedBox(
-                          width: 600,
-                          //height: reviewBoxHeight,
-                          child: DisplayText('I am a partner at Kunzler Bean '
-                              '& Adamson, a leading trademark firm and I used to teach '
-                              'attorneys about trademark law. While I spend most '
-                              'of my time hiking, biking, and playing pickleball, '
-                              'I still enjoy solving tough trademark '
-                              'problems and can help you with your issue. '
-                              'However, I just do limited representations for '
-                              'applicants who need short-term help because I '
-                              'don\'t want to manage your trademark '
-                              'after that problem is solved and you probably don\'t '
-                              'want to pay me to do things that you can do yourself. '),
-                        ),
-                      ]),
-        Row(
-            children: [
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => homePage()));
+                        }
+                    ),
+                  ),
 
-              ])])));
+                ]))));
   }
 } // sendApplication

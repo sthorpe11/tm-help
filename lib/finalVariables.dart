@@ -6,14 +6,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 //Colors
 const myPrimarySwatch = Colors.lightBlue;
-final headerColor = Colors.lightBlue;
-final headerTextColor = Colors.white;
+const headerColor = Colors.lightBlue;
+const headerTextColor = Colors.white;
 const trueColor = Colors.green;
 const falseColor = Colors.red;
 //Text
-final headerTextSize = 20.0;
-final buttonColor = Colors.lightBlue;
-final buttonTextColor = Colors.white;
+const headerTextSize = 20.0;
+const buttonColor = Colors.lightBlue;
+const buttonTextColor = Colors.white;
 final buttonTextSize = 18.0;
 final buttonAccentColor = Colors.deepPurpleAccent;
 final buttonWidth =  160.0;
@@ -23,17 +23,26 @@ final messageSize = 18.0;
 final resultTextColor = Colors.black;
 final resultTextSize = 18.0;
 final textBoxWidth = 300.0;
-final textBoxWidthX = 500.0;
-final textBoxHeight = 50.0;
-final reviewBoxHeight = 200.0;
-final dialogBoxWidth = 350.0;
-final dialogBoxHeight = 400.0;
-final formFillColor = Colors.white;
+const textBoxWidthX = 500.0;
+const textBoxHeight = 50.0;
+const reviewBoxHeight = 50.0;
+const reviewBoxWidth = 175.0;
+const answerBoxWidth = 300.0;
+const containerMinWidth = 400.0;
+const containerMaxWidth = 400.0;
+const dialogBoxWidth = 350.0;
+const dialogBoxHeight = 400.0;
+const displayBoxWidth = 600.0;
+const resolutionGraphWidth = 300.0;
+const resolutionGraphHeight = 750.0;
+const formFillColor = Colors.white;
 final textSize = 18.0;
 final textColor = Colors.black;
 const textbFillColor = Colors.white;
 const marginSize = 10.0;
+const borderColor = Colors.lightBlue;
 const borderRadius = 10.0;
+const borderWidth = 2.0;
 const outPadding = 5.0;
 const verticalSpace = 10.0;
 const horizontalSpace = 10.0;
@@ -42,9 +51,9 @@ const registerButtonLabel = 'Register Yourself';
 const rejectionButtonLabel = 'Refusals Explained';
 const aboutButtonLabel = 'About Me';
 const homeButtonLabel = 'Home';
-const contactButtonLabel = 'Contact Me';
+const contactButtonLabel = 'Get Help';
 // Icons
-const String headerIcon= '../assets/Logo.png';
+const String headerIcon= 'assets/Logo.png';
 
 // Methods
 
@@ -57,7 +66,10 @@ class DisplayText extends StatelessWidget {
     return Container(
         margin: EdgeInsets.all(marginSize),
         child: Text( message,
-          style: TextStyle(color: messageColor, fontWeight: FontWeight.normal, fontSize: messageSize, backgroundColor: textbFillColor),
+          style: TextStyle(color: messageColor,
+              fontWeight: FontWeight.normal,
+              fontSize: messageSize,
+              backgroundColor: textbFillColor),
         )
     );
   }
@@ -71,6 +83,7 @@ class PopupWindow extends StatelessWidget {
       : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(title),
@@ -86,6 +99,55 @@ class PopupWindow extends StatelessWidget {
     );
   }
 } //PopupWindow
+
+void showPopup(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Container(
+        width: 400.0, // Set the width
+        height: 100.0,
+        child: Text(message),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the popup
+            },
+            child: Text('Close'),
+          ),
+        ],
+      );
+    },
+  );
+} //showPopup
+
+String GenerateAbstractMarks(String mark) {
+  final patList = ['S', 'A', 'V', 'PH', 'F', 'C',  'C', 'CH', 'CH', 'SH', 'SL', 'E', 'I', 'TH', 'TH', 'B', 'ING'];
+  final repList = ['Z', 'V', 'A', 'F',  'PH', 'K', 'S', 'C',  'K',  'H',  'Z', 'Y', 'Y', 'SS', 'DD', 'E', '\'N'];
+  mark = mark.toUpperCase();
+  String abstractMark = '';
+  //abstractMark = 'Examples of a more abstract version of your mark: \n\n';
+  int count = 0;
+  for (var i=0; i<patList.length; i++) {
+    if (mark.contains(patList[i])) {
+      abstractMark += mark.replaceFirst(patList[i], repList[i]) + ' ';
+      count += 1;
+    }
+    if (count > 20) {break;}
+  }
+  if (count < 5){
+    abstractMark += mark + '99 ';
+    abstractMark += mark + 'Now ';
+    abstractMark += 'My'+mark + ' ';
+    abstractMark += 'The'+mark + ' ';
+    abstractMark += 'Big'+mark + ' ';
+  }
+  //print(abstractMark);
+  return abstractMark;
+}
 
 String cleanText(text) {
   text = text.replaceAll(': ', ':\n');

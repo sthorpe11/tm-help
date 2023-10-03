@@ -1,68 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import './saveDataToFile.dart';
 import './homePage.dart';
 import './finalVariables.dart';
 
-class sendEmail extends HookConsumerWidget {
+class contactMe extends StatefulHookConsumerWidget {
   @override
-  String _email='';
-  String _name='';
-  String _appNo='';
+  contactMeState createState() => contactMeState();
+}
 
-  Widget build(BuildContext context, WidgetRef ref) {
-    final _inputControllerEmail = useTextEditingController(text: '');
-    final _inputControllerApplicationNo = useTextEditingController(text: '');
-    final _inputControllerName = useTextEditingController(text: '');
-    return MaterialApp(home: Scaffold(
-        appBar: AppBar(
-          title: Text("Contact Me"),
-          titleTextStyle: TextStyle(color: headerTextColor, fontSize: headerTextSize),
-          leading: Image.asset(headerIcon),
-          backgroundColor: headerColor,
-          actions: [
-            IconButton(onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return PopupWindow(
-                    title: 'Contact Me',
-                    message: 'Let me know how I can help.',
-                  );
-                },
-              );
-            },
-                icon: const Icon(Icons.help)
+class contactMeState extends ConsumerState<contactMe> {
+   @override
+
+  Widget build(BuildContext context) {
+     String _email='';
+     String _name='';
+     String _appNo='';
+     String _outcome = '';
+     final _inputControllerEmail = useTextEditingController(text: '');
+     final _inputControllerApplicationNo = useTextEditingController(text: '');
+     final _inputControllerName = useTextEditingController(text: '');
+    return Container(
+          constraints: BoxConstraints(
+            minWidth: containerMinWidth,
+            maxWidth: containerMaxWidth,
+            maxHeight: 280,
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: borderColor, // Border color
+              width: borderWidth, // Border width
             ),
-          ],
-        ),
-        body: Center(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: verticalSpace),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(height: verticalSpace),
-                      SizedBox(
-                        width: buttonWidth,
-                        height: buttonHeight,
-                        child: ElevatedButton(
-                            child: Text('Home'),
-                            style:ElevatedButton.styleFrom(
-                              backgroundColor: buttonColor,
-                              foregroundColor: buttonTextColor,
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => homePage()));
-                            }
+            borderRadius: BorderRadius.circular(borderRadius), // Optional: Rounded corners
+          ),
 
-                        ),
-                      ),
-                    ]),
+          child: Column(
+              children: [
                 SizedBox(height: verticalSpace),
+
+                  DisplayText('Request Help'),
+                  SizedBox(height: verticalSpace),
+                  DisplayText('If you need help, please contact me:'),
+                  DisplayText('sthorpe@kba.law'),
+                  //DisplayText('trademark-help@gmail.com'),
+
+                /*
                 Align(
                     alignment: Alignment.centerLeft,
                     child: ConstrainedBox(
@@ -72,7 +56,7 @@ class sendEmail extends HookConsumerWidget {
                         child: TextFormField(
                           controller: _inputControllerEmail,
                           decoration: const InputDecoration(
-                            fillColor: Colors.white,
+                            fillColor: formFillColor,
                             border: OutlineInputBorder(borderRadius: const BorderRadius.all(
                               const Radius.circular(borderRadius),),),
                             contentPadding: EdgeInsets.all(marginSize),
@@ -93,7 +77,7 @@ class sendEmail extends HookConsumerWidget {
                         child: TextFormField(
                           controller: _inputControllerName,
                           decoration: const InputDecoration(
-                            fillColor: Colors.white,
+                            fillColor: formFillColor,
                             border: OutlineInputBorder(borderRadius: const BorderRadius.all(
                               const Radius.circular(borderRadius),),),
                             contentPadding: EdgeInsets.all(marginSize),
@@ -114,7 +98,7 @@ class sendEmail extends HookConsumerWidget {
                         child: TextFormField(
                           controller: _inputControllerApplicationNo,
                           decoration: const InputDecoration(
-                            fillColor: Colors.white,
+                            fillColor: formFillColor,
                             border: OutlineInputBorder(borderRadius: const BorderRadius.all(
                               const Radius.circular(borderRadius),),),
                             contentPadding: EdgeInsets.all(marginSize),
@@ -130,7 +114,7 @@ class sendEmail extends HookConsumerWidget {
                   width: buttonWidth,
                   height: buttonHeight,
                   child: ElevatedButton(
-                      child: Text('Send'),
+                      child: Text('Save'),
                       style:ElevatedButton.styleFrom(
                         backgroundColor: buttonColor,
                         foregroundColor: buttonTextColor,
@@ -139,6 +123,33 @@ class sendEmail extends HookConsumerWidget {
                         _email = _inputControllerEmail.text;
                         _name = _inputControllerName.text;
                         _appNo = _inputControllerApplicationNo.text;
+                        _outcome = await saveTextToFile(_email+' '+_name+' '+_appNo, _email);
+                        PopupWindow(title: _outcome, message: _outcome);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => homePage()));
+                      }
+
+                  ),
+                ),
+                */
+
+                /*
+                SizedBox(height: verticalSpace),
+                SizedBox(
+                  width: buttonWidth,
+                  height: buttonHeight,
+                  child: ElevatedButton(
+                      child: Text('Email'),
+                      style:ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
+                        foregroundColor: buttonTextColor,
+                      ),
+                      onPressed: () async {
+                        _email = _inputControllerEmail.text;
+                        _name = _inputControllerName.text;
+                        _appNo = _inputControllerApplicationNo.text;
+                        //saveTextToFile(_email+_name+_appNo);
+
                         final Email myEmail = Email(
                           body: _appNo+' '+_name+' '+_email,
                           subject: _appNo+' '+_name,
@@ -163,6 +174,8 @@ class sendEmail extends HookConsumerWidget {
 
                   ),
                 ),
-        ]))));
-  }
-} // sendApplication
+                */
+              ]),
+        );
+  } //Widget Tree
+} // contactMe
