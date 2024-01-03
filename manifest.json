@@ -1,6 +1,6 @@
 {
-    "name": "androidrouting",
-    "short_name": "androidrouting",
+    "name": "gpt3",
+    "short_name": "gpt3",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
